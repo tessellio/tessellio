@@ -126,13 +126,13 @@ A receiver reports why it could not advance with one of eight reasons:
 | Reason | What it means |
 |---|---|
 | `BASE_MISMATCH` | the update continues an update the receiver does not hold |
-| `INCOMPLETE_FRAME` | the update is malformed, or its parts do not agree |
+| `INCOMPLETE_UPDATE` | the update is malformed, or its parts do not agree |
 | `DECODE_ERROR` | a region's op stream does not obey the grammar |
 | `COVERAGE_INVALID` | a self-contained update's regions do not cover the surface |
 | `UNKNOWN_CODEC` | the update's codec is not 8 |
 | `QUEUE_OVERFLOW` | the receiver could not hold the update |
 | `GEOMETRY_MISMATCH` | the update's geometry differs from the receiver's surface |
-| `CHUNK_GAP` | a part is missing, or arrives out of order |
+| `PART_GAP` | a part is missing, or arrives out of order |
 
 The set is closed on purpose: a sender that repairs an update must know
 what was wrong with it, and a reason outside the set is a defect rather than

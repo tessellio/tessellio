@@ -70,8 +70,8 @@ and turns it into updates; it takes updates and turns them into cells.
 |---|---|---|
 | surface | `Surface` | `SurfaceCanvas` |
 | capture | `CapturedFrame` | — (the browser receives cells, not captures) |
-| update | `EncodedUpdate` | `Update` |
-| part | `Chunk` | `UpdateChunk` |
+| update | `EncodedUpdate` | `AssembledUpdate` |
+| part | `Part` | `UpdatePart` |
 | region | `Region` | `UpdateRegion` |
 | reference | `ReferenceJournal` | — (the browser holds no reference) |
 

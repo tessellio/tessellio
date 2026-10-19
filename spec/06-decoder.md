@@ -9,13 +9,13 @@ validated update, and MUST NOT paint anything from one.
 ```
 validate_part(part):
   1  codec == 8                                          else reject(UNKNOWN_CODEC)
-  2  update_id >= 1                                      else reject(INCOMPLETE_FRAME)
-  3  base_update_id == 0 or base_update_id < update_id    else reject(INCOMPLETE_FRAME)
+  2  update_id >= 1                                      else reject(INCOMPLETE_UPDATE)
+  3  base_update_id == 0 or base_update_id < update_id    else reject(INCOMPLETE_UPDATE)
   4  1 <= width <= 8192, 1 <= height <= 8192,
      width * height <= 16_777_216                        else reject(GEOMETRY_MISMATCH)
-  5  0 <= part_index < part_count <= 8                   else reject(CHUNK_GAP)
-  6  0 <= update_bytes <= MAX_UPDATE_WIRE_BYTES          else reject(INCOMPLETE_FRAME)
-  7  regions.len() <= MAX_REGIONS_PER_PART               else reject(INCOMPLETE_FRAME)
+  5  0 <= part_index < part_count <= 8                   else reject(PART_GAP)
+  6  0 <= update_bytes <= MAX_UPDATE_WIRE_BYTES          else reject(INCOMPLETE_UPDATE)
+  7  regions.len() <= MAX_REGIONS_PER_PART               else reject(INCOMPLETE_UPDATE)
   8  per region: x >= 0, y >= 0, width >= 1, height >= 1,
      x + width <= surface width, y + height <= surface height
                                                        else reject(DECODE_ERROR)
@@ -29,9 +29,9 @@ rejected before anything is allocated for it, and the geometry is checked
 before the regions, so a region is never validated against a surface that
 does not exist.
 
-The reasons are a closed set: `BASE_MISMATCH`, `INCOMPLETE_FRAME`,
+The reasons are a closed set: `BASE_MISMATCH`, `INCOMPLETE_UPDATE`,
 `DECODE_ERROR`, `COVERAGE_INVALID`, `UNKNOWN_CODEC`, `QUEUE_OVERFLOW`,
-`GEOMETRY_MISMATCH`, `CHUNK_GAP`. A receiver that fails for a reason that is
+`GEOMETRY_MISMATCH`, `PART_GAP`. A receiver that fails for a reason that is
 not one of these has a defect, not a different codec.
 
 ## 6.2 The assembly

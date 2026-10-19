@@ -77,7 +77,7 @@ budget.
 A self-contained update establishes the whole surface. The reference
 implementation builds it in **bands** of `RESET_BAND_ROWS` rows (256),
 each band encoded independently, so a wide surface is encoded in parallel
-and split into at most `RESET_MAX_CHUNKS` parts.
+and split into at most `RESET_MAX_PARTS` parts.
 
 A band whose payload would exceed the per-region cap is split further, until
 it fits or cannot be split at all. A surface that cannot be encoded within

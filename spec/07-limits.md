@@ -15,7 +15,7 @@ reject one that does.
 | `MAX_PART_WIRE_BYTES` | 491 520 | the sender's parter |
 | `MAX_PARTS_PER_UPDATE` | 8 | the sender's parter + the receiver's validation |
 | `MAX_UPDATE_WIRE_BYTES` | 3 932 160 | the sender's budget + the receiver's validation |
-| `RESET_MAX_CHUNKS` | 4 (≤ 1 966 080 B per self-contained update) | the sender's budget; the remainder becomes the next update's work |
+| `RESET_MAX_PARTS` | 4 (≤ 1 966 080 B per self-contained update) | the sender's budget; the remainder becomes the next update's work |
 | `DELTA_REFRESH_CELLS` | 131 072 | the sender's budget |
 | `DELTA_REFRESH_MIN_CELLS` | 4 096 | the sender's progress guarantee |
 | `DELTA_OPS_BUDGET_BYTES` | 393 216 | the sender's budget |
@@ -37,7 +37,7 @@ MAX_UPDATE_WIRE_BYTES  = MAX_PARTS_PER_UPDATE * MAX_PART_WIRE_BYTES
                        = 8 * 491_520
                        = 3_932_160
 
-RESET_PAYLOAD_BUDGET_BYTES = RESET_MAX_CHUNKS * MAX_PART_WIRE_BYTES
+RESET_PAYLOAD_BUDGET_BYTES = RESET_MAX_PARTS * MAX_PART_WIRE_BYTES
                            = 4 * 491_520
                            = 1_966_080
 ```
