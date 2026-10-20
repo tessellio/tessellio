@@ -50,8 +50,23 @@ implementation's search is:
    changed tiles is taken as a rectangle.
 3. **Exact bounds.** Each rectangle is shrunk to the exact bounding box of
    the cells that changed inside it.
-4. **Merge.** Rectangles that are adjacent and whose union is cheaper to
-   send as one are merged.
+4. **Merge.** When the rectangles are more numerous than the region cap
+   (`MAX_REGIONS_PER_UPDATE`, 64) allows, they are grouped by a uniform
+   grid: every rectangle belongs to the grid cell its centre lies in, the
+   rectangles of one cell become the smallest rectangle covering them, and
+   the grid is coarsened — its cell size doubled — until its occupied cells
+   fit the cap. The merged set covers exactly the cells the rectangles
+   covered: the merge adds area, never cells.
+
+The merge is bounded, and the bound belongs to the search rather than to an
+accident of it. The grid is coarsened at most seven times, because a cell of
+`MAX_SURFACE_DIMENSION` cells is the whole surface; every coarsening is one
+sort over the rectangles; and the merge of `n` rectangles therefore costs
+`O(n log n)`. A surface at the maximum dimension holds sixteen thousand
+rectangles, and merging those costs about as much as merging a thousand:
+the search never grows with the square of the frame's change count, and a
+sender never spends seconds deciding how to group a frame that changed
+everywhere.
 
 The search is a sender-side decision. The format constrains the result, not
 the method: a receiver accepts any set of regions that obeys §4.
