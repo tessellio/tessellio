@@ -141,7 +141,7 @@ whatever its own environment uses:
 |---|---|---|
 | `TESSELLIO_REFRESH_CELLS` | 131 072 | the refresh budget of §5.5 |
 | `TESSELLIO_DELTA_DEFLATE_LEVEL` | 6 | the deflate level of a chained update's regions |
-| `TESSELLIO_RESET_DEFLATE_LEVEL` | 9 | the deflate level of a self-contained update's regions |
+| `TESSELLIO_RESET_DEFLATE_LEVEL` | 3 | the deflate level of a self-contained update's regions |
 | `TESSELLIO_ENCODER_THREADS` | the available parallelism | how many bands of rows are compared or encoded at once |
 | `TESSELLIO_IDLE_UPDATE_MS` | 1000 | the idle interval of §5.9 |
 | `TESSELLIO_REFRESH_BACKLOG_CELLS` | 262 144 | how much changed content may wait for the next update |
