@@ -73,6 +73,11 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). A change to the specification is a
 change to a contract between implementations that do not share an author, and
 it is reviewed like code.
 
+## Status
+
+In development. One moving version, `v0.1.0`, naming the current commit:
+there is exactly one tag, and a change moves it.
+
 ## Licence
 
 PolyForm Noncommercial License 1.0.0. See [LICENSE](LICENSE).
