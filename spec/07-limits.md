@@ -22,7 +22,7 @@ reject one that does.
 | `RESET_BAND_ROWS` | 256 | the sender's band encoder |
 | `FILL_MIN_RUN` | 8 | the sender's op builder (shorter constant runs stay literal) |
 | `JOURNAL_MAX_BYTES` | 8 388 608 | the sender's journal |
-| `JOURNAL_MAX_FRAMES` | 240 | the sender's journal |
+| `JOURNAL_MAX_UPDATES` | 240 | the sender's journal |
 | `IDLE_UPDATE_INTERVAL_MS` | 1 000 | the sender's idle update |
 | `RESYNC_MIN_INTERVAL_MS` | 200 | the receiver's repair reports |
 | `RESET_MIN_INTERVAL_MS` | 250, per receiver | the sender, for repair-triggered plans |

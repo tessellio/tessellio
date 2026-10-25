@@ -47,7 +47,7 @@ is **generated, never written by hand**:
 cd tessellio-core
 TESSELLIO_CORPUS_OUT=../tessellio-conformance/corpus.json \
   cargo test --test codec_corpus_gen -- --nocapture
-# tessellio-corpus: cases=72 bytes=853135 regions=76
+# tessellio-corpus: cases=72 bytes=858978 regions=76
 ```
 
 ## 8.4 The gate

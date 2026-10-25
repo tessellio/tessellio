@@ -89,10 +89,12 @@ cell-to-channel lookup table.
 
 Measured on a loaded 16-core machine: a chained update encodes at ≈ 4 ms,
 including the capture-to-cell conversion; a 1080p self-contained update
-encodes at 7.53 ms and ships 82 799 bytes in 5 regions across ≤ 4 parts. A
+encodes at 7.53 ms and ships 82 699 bytes in 5 regions across ≤ 4 parts. A
 one-cell pointer move costs 92 bytes, typing a 600×40 area 2 466 bytes, a
 600×400 window drag 1 633 bytes, a 900×620 scroll 4 624 bytes, and a
-full-width 1680×920 scroll 16 380 bytes — still a chained update. A 640×360
+full-width 1680×920 scroll 16 380 bytes — still a chained update. A
+whole-viewport shift off the line period — every line of the surface dirty
+at once — costs 40 960 bytes and stays a chained update. A 640×360
 noisy area converges in two updates (259 918 bytes, then 203 312 bytes), and
 an unchanged surface costs 0 bytes and no compression work.
 

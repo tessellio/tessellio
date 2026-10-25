@@ -117,7 +117,7 @@ reference back, re-encodes against it, and sends the difference — so the
 repair carries only what actually changed, and never carries stale pixels.
 
 The journal is bounded by `JOURNAL_MAX_BYTES` (8 MiB) and
-`JOURNAL_MAX_FRAMES` (240). When the bound is reached, the oldest entries
+`JOURNAL_MAX_UPDATES` (240). When the bound is reached, the oldest entries
 are dropped, and a base below the journal's floor cannot be reached: the
 answer to that receiver is a self-contained update.
 
@@ -156,9 +156,11 @@ whatever its own environment uses:
 |---|---|---|
 | `TESSELLIO_REFRESH_CELLS` | 131 072 | the refresh budget of §5.5 |
 | `TESSELLIO_DELTA_DEFLATE_LEVEL` | 6 | the deflate level of a chained update's regions |
-| `TESSELLIO_RESET_DEFLATE_LEVEL` | 3 | the deflate level of a self-contained update's regions |
+| `TESSELLIO_RESET_DEFLATE_LEVEL` | 6 | the deflate level of a self-contained update's regions |
 | `TESSELLIO_ENCODER_THREADS` | the available parallelism | how many bands of rows are compared or encoded at once |
 | `TESSELLIO_IDLE_UPDATE_MS` | 1000 | the idle interval of §5.9 |
-| `TESSELLIO_REFRESH_BACKLOG_CELLS` | 262 144 | how much changed content may wait for the next update |
-| `TESSELLIO_RESYNC_MIN_INTERVAL_MS` | 200 | the minimum interval between two repairs of one receiver |
-| `TESSELLIO_RESET_MIN_INTERVAL_MS` | 250 | the minimum interval between two self-contained updates for one receiver |
+
+The refresh backlog (262 144 cells, §7) and the repair and reset intervals
+(§9) are the codec's own constants, not environment knobs: they are wired to
+the receiver's own reports, and a deployment does not tune them from
+outside.
